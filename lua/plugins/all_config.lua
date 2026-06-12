@@ -33,18 +33,34 @@ return {
   {
     "folke/snacks.nvim",
     opts = {
+      matcher = {
+        fuzzy = true,
+        smartcase = true,
+        ignorecase = true,
+      },
       picker = {
+        exclude = { "node_modules" },
         sources = {
-          files = {
-            hidden = true, -- show dotfiles
-            ignored = true, -- show gitignored files
-            exclude = { "node_modules", ".husky" },
+          explorer = {
+            actions = {
+              smart_open = function(picker, item)
+                if not item.dir then
+                  local ok = picker:action({ "pick_win", "jump" })
+                  if ok then
+                    return
+                  end
+                end
+                picker:action({ "confirm" })
+              end,
+            },
+            win = {
+              list = {
+                keys = {
+                  ["O"] = { { "smart_open" }, mode = { "n", "i" } },
+                },
+              },
+            },
           },
-        },
-        matcher = {
-          frecency = true,
-          smartcase = false,
-          ignorecase = true,
         },
       },
     },
