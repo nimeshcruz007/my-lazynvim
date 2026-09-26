@@ -39,6 +39,11 @@ return {
         ignorecase = true,
       },
       picker = {
+        matcher = {
+          fuzzy = true,
+          smartcase = false,
+          ignorecase = true,
+        },
         exclude = { "node_modules" },
         sources = {
           explorer = {

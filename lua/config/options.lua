@@ -11,3 +11,6 @@ vim.opt.autoindent = false
 vim.opt.smartindent = false
 vim.opt.linebreak = true
 vim.opt.textwidth = 0
+
+--latest changes
+vim.o.shell = "zsh -l"
